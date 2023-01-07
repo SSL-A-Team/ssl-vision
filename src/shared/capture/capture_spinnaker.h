@@ -240,24 +240,11 @@ private:
 
 
     static string toString(Spinnaker::StreamBufferCountModeEnum e) {
-      switch(e)
-      {
-        case Spinnaker::StreamBufferCountMode_Auto:
-          return "Auto";
-        case Spinnaker::StreamBufferCountMode_Manual:
-          return "Manual";
-        default:
-          return "Auto";
-      }
+      return "Manual";
     }
 
     static Spinnaker::StreamBufferCountModeEnum stringToStreamBufferCountMode(const char* s) {
-      if(strcmp(s, "Auto") == 0) {
-        return Spinnaker::StreamBufferCountMode_Auto;
-      } else if(strcmp(s, "Manual") == 0) {
-        return Spinnaker::StreamBufferCountMode_Manual;
-      }
-      return Spinnaker::StreamBufferCountMode_Auto;
+      return Spinnaker::StreamBufferCountMode_Manual;
     }
 };
 

@@ -75,7 +75,6 @@ CaptureSpinnaker::CaptureSpinnaker(VarList * _settings,int default_camera_id, QO
 
   v_stream_buffer_count_mode = new VarStringEnum("Stream Buffer Count Mode", toString(Spinnaker::StreamBufferCountMode_Manual));
   v_stream_buffer_count_mode->addItem(toString(Spinnaker::StreamBufferCountMode_Manual));
-  v_stream_buffer_count_mode->addItem(toString(Spinnaker::StreamBufferCountMode_Auto));
 
   v_stream_buffer_count = new VarInt("Stream Buffer Count", 3);
 
@@ -170,11 +169,7 @@ void CaptureSpinnaker::readParameterValues(VarList * item)
     Spinnaker::StreamBufferCountModeEnum countMode = pCam->TLStream.StreamBufferCountMode.GetValue();
     v_stream_buffer_count_mode->setString(toString(countMode));
     v_stream_buffer_count->setInt(static_cast<int>(pCam->TLStream.StreamBufferCountResult.GetValue()));
-    if(countMode == Spinnaker::StreamBufferCountMode_Auto) {
-      v_stream_buffer_count->addFlags(VARTYPE_FLAG_READONLY);
-    } else {
-      v_stream_buffer_count->removeFlags(VARTYPE_FLAG_READONLY);
-    }
+    v_stream_buffer_count->removeFlags(VARTYPE_FLAG_READONLY);
 
     v_frame_rate->setDouble(pCam->AcquisitionFrameRate.GetValue());
     v_frame_rate_result->setDouble(pCam->AcquisitionResultingFrameRate.GetValue());

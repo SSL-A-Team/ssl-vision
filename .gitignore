@@ -11,4 +11,5 @@ cmake-build*
 /.dir-locals.el
 .ccls-cache
 *~
+*.swp
 /compile_commands.json
