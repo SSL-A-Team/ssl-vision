@@ -182,7 +182,7 @@ void CaptureSpinnaker::readParameterValues() {
     getCameraValueInt(pCam->OffsetX, v_image_offset_x);
     getCameraValueInt(pCam->OffsetY, v_image_offset_y);
 
-    v_gamma_enabled->setBool(pCam->GammaEnable.GetValue());
+    // v_gamma_enabled->setBool(pCam->GammaEnable.GetValue());
     getCameraValueFloat(pCam->Gamma, v_gamma);
 
     v_frame_rate_enable->setBool(pCam->AcquisitionFrameRateEnable.GetValue());
@@ -381,7 +381,7 @@ bool CaptureSpinnaker::copyAndConvertFrame(const RawImage &src, RawImage &target
     target.ensure_allocation(out_color, src.getWidth(), src.getHeight());
     cv::Mat srcMat(src.getHeight(), src.getWidth(), CV_8UC1, src.getData());
     cv::Mat dstMat(target.getHeight(), target.getWidth(), CV_8UC3, target.getData());
-    cvtColor(srcMat, dstMat, cv::COLOR_BayerBG2RGB);
+    cvtColor(srcMat, dstMat, cv::COLOR_BayerBG2BGR);
   } else {
     fprintf(stderr, "Invalid conversion from %s to %s\n",
             v_capture_mode->getSelection().c_str(), v_convert_to_mode->getSelection().c_str());
